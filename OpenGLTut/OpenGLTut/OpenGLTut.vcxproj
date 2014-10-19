@@ -68,6 +68,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="math_3d.cpp" />
     <ClCompile Include="ogldev_util.cpp" />
     <ClCompile Include="pipeline.cpp" />
     <ClCompile Include="Tutorial.cpp" />

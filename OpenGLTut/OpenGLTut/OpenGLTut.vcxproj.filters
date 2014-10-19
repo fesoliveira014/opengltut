@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Tutorial.cpp">
+    <ClCompile Include="math_3d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ogldev_util.cpp">
@@ -24,15 +24,18 @@
     <ClCompile Include="pipeline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tutorial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math_3d.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ogldev_util.h">
+    <ClInclude Include="ogldev_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ogldev_types.h">
+    <ClInclude Include="ogldev_util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pipeline.h">

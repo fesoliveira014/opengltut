@@ -1,6 +1,7 @@
 #ifndef MATH_3D_H
 #define MATH_3D_H
 
+#include <cstdio>
 #ifdef _WIN32
 #define _USE_MATH_DEFINES
 #include <cmath>
@@ -27,6 +28,15 @@ struct Vector3f
 		x = _x;
 		y = _y;
 		z = _z;
+	}
+
+	Vector3f Cross(const Vector3f& v) const;
+
+	Vector3f& Normalize();
+
+	void print() const
+	{
+		printf("(%0.02f, %0.02f, %0.02f)", x, y, z);
 	}
 
 
@@ -64,6 +74,34 @@ public:
 
 		return Ret;
 	}
+
+	inline Matrix4f operator + (const Matrix4f& k)
+	{
+		for (int i = 0; i < 4; i++){
+			for (int j = 0; j < 4; j++){
+				m[i][j] += k.m[i][j];
+			}
+		}
+
+		return (*this);
+	}
+
+	inline Matrix4f operator - (const Matrix4f& k)
+	{
+		for (int i = 0; i < 4; i++){
+			for (int j = 0; j < 4; j++){
+				m[i][j] -= k.m[i][j];
+			}
+		}
+
+		return (*this);
+	}
+
+	void InitScaleTransform(float ScaleX, float ScaleY, float ScaleZ);
+	void InitRotateTransform(float RotateX, float RotateY, float RotateZ);
+	void InitiTranslationTransform(float x, float y, float z);
+	void InitCameraTransform(const Vector3f& target, const Vector3f& up);
+	void InitPersProjTransform(float FOV, float width, float height, float zNear, float zFar);
 };
 
 
