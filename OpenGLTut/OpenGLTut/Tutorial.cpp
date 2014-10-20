@@ -16,7 +16,7 @@
 
 GLuint VBO; // Vertex buffer object
 GLuint IBO; // Index buffer object
-GLuint gWorldLocation;
+GLuint gWVPLocation;
 
 const char* pVSFileName = "shader.vs";
 const char* pFSFileName = "shader.fs";
@@ -32,10 +32,14 @@ static void RenderSceneCB()
 	Pipeline p;
 	//p.Scale(1.1f, 1.0f, 1.1f);
 	p.Rotate(0.0f, Scale, 0.0f);
-	p.WorldPos(0.0f, 0.0f, 5.0f);
-	p.SetProjection(30.0f, WINDOW_WIDHT, WINDOW_HEIGHT, 1.0f, 100.0f);
+	p.WorldPos(0.0f, 0.0f, 3.0f);
+	Vector3f CameraPos(0.0f, 0.0f, -3.0f);
+	Vector3f CameraTarget(0.0f, 0.0f, 2.0f);
+	Vector3f CameraUp(0.0f, 1.0f, 0.0f);
+	p.SetCamera(CameraPos, CameraTarget, CameraUp);
+	p.SetProjection(60.0f, WINDOW_WIDHT, WINDOW_HEIGHT, 1.0f, 100.0f);
 
-	glUniformMatrix4fv(gWorldLocation, 1, GL_TRUE, (const GLfloat*)p.GetTrans());
+	glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, (const GLfloat*)p.GetTrans());
 
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -77,10 +81,10 @@ static void CreateVertexBuffer()
 
 static void CreateIndexBuffer()
 {
-	unsigned int Indices[] = {  1, 2, 3,
-								3, 0, 1,
-								1, 2, 0,
-								0, 3, 2 };
+	unsigned int Indices[] = {  0, 3, 1,
+								1, 3, 2,
+								2, 3, 0,
+								0, 1, 2 };
 
 	glGenBuffers(1, &IBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
@@ -93,7 +97,7 @@ static void AddShader(GLuint ShaderProgram, const char* pShaderText, GLenum Shad
 
 	if (ShaderObj == 0) {
 		fprintf(stderr, "Error creating shader type %d\n", ShaderType);
-		exit(0);
+		exit(1);
 	}
 
 	// Specifies the source code in a array of characters
@@ -167,8 +171,8 @@ static void CompileShaders()
 
 	glUseProgram(ShaderProgram);
 
-	gWorldLocation = glGetUniformLocation(ShaderProgram, "gWorld"); // Queries the program object for the uniform variable
-	assert(gWorldLocation != 0xFFFFFFFF);
+	gWVPLocation = glGetUniformLocation(ShaderProgram, "gWVP"); // Queries the program object for the uniform variable
+	assert(gWVPLocation != 0xFFFFFFFF);
 }
 
 int main(int argc, char** argv)

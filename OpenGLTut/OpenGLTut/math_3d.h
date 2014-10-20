@@ -38,8 +38,6 @@ struct Vector3f
 	{
 		printf("(%0.02f, %0.02f, %0.02f)", x, y, z);
 	}
-
-
 };
 
 class Matrix4f
@@ -73,28 +71,6 @@ public:
 		}
 
 		return Ret;
-	}
-
-	inline Matrix4f operator + (const Matrix4f& k)
-	{
-		for (int i = 0; i < 4; i++){
-			for (int j = 0; j < 4; j++){
-				m[i][j] += k.m[i][j];
-			}
-		}
-
-		return (*this);
-	}
-
-	inline Matrix4f operator - (const Matrix4f& k)
-	{
-		for (int i = 0; i < 4; i++){
-			for (int j = 0; j < 4; j++){
-				m[i][j] -= k.m[i][j];
-			}
-		}
-
-		return (*this);
 	}
 
 	void InitScaleTransform(float ScaleX, float ScaleY, float ScaleZ);
