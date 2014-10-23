@@ -30,6 +30,33 @@ struct Vector3f
 		z = _z;
 	}
 
+	Vector3f operator+=(const Vector3f& r)
+	{
+		x += r.x;
+		y += r.y;
+		z += r.z;
+
+		return *this;
+	}
+
+	Vector3f operator-=(const Vector3f r)
+	{
+		x -= r.x;
+		y -= r.y;
+		z -= r.z;
+
+		return *this;
+	}
+
+	Vector3f operator *=(float f)
+	{
+		x *= f;
+		y *= f;
+		z *= f;
+
+		return *this;
+	}
+
 	Vector3f Cross(const Vector3f& v) const;
 
 	Vector3f& Normalize();
@@ -38,7 +65,44 @@ struct Vector3f
 	{
 		printf("(%0.02f, %0.02f, %0.02f)", x, y, z);
 	}
+
 };
+
+inline Vector3f operator+(const Vector3f& l, const Vector3f r)
+{
+	Vector3f ret(l.x + r.x,
+		l.y + r.y,
+		l.z + r.z);
+
+	return ret;
+}
+
+inline Vector3f operator-(const Vector3f& l, const Vector3f r)
+{
+	Vector3f ret(l.x - r.x,
+				 l.y - r.y,
+				 l.z - r.z);
+
+	return ret;
+}
+
+inline Vector3f operator*(const Vector3f& l, float f)
+{
+	Vector3f ret(l.x * f,
+		l.y * f,
+		l.z * f);
+
+	return ret;
+}
+
+inline Vector3f operator/(const Vector3f& l, float f)
+{
+	Vector3f ret(l.x / f,
+		l.y / f,
+		l.z / f);
+
+	return ret;
+}
 
 class Matrix4f
 {

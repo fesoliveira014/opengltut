@@ -10,6 +10,7 @@
 
 #include "ogldev_util.h"
 #include "pipeline.h"
+#include "camera.h"
 
 #define WINDOW_WIDHT 1024
 #define WINDOW_HEIGHT 768
@@ -17,6 +18,8 @@
 GLuint VBO; // Vertex buffer object
 GLuint IBO; // Index buffer object
 GLuint gWVPLocation;
+
+Camera GameCamera;
 
 const char* pVSFileName = "shader.vs";
 const char* pFSFileName = "shader.fs";
@@ -33,10 +36,7 @@ static void RenderSceneCB()
 	//p.Scale(1.1f, 1.0f, 1.1f);
 	p.Rotate(0.0f, Scale, 0.0f);
 	p.WorldPos(0.0f, 0.0f, 3.0f);
-	Vector3f CameraPos(0.0f, 0.0f, -3.0f);
-	Vector3f CameraTarget(0.0f, 0.0f, 2.0f);
-	Vector3f CameraUp(0.0f, 1.0f, 0.0f);
-	p.SetCamera(CameraPos, CameraTarget, CameraUp);
+	p.SetCamera(GameCamera.getPos(), GameCamera.getTarget(), GameCamera.getUp());
 	p.SetProjection(60.0f, WINDOW_WIDHT, WINDOW_HEIGHT, 1.0f, 100.0f);
 
 	glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, (const GLfloat*)p.GetTrans());
@@ -59,11 +59,17 @@ static void RenderSceneCB()
 	glutSwapBuffers();
 }
 
+static void SpecialKeyboardCB(int Key, int x, int y)
+{
+	GameCamera.onKeyboard(Key);
+}
+
 static void InitializeGlutCallbacks()
 {
 	// Calls RenderSceneCB as the display function
 	glutDisplayFunc(RenderSceneCB);
 	glutIdleFunc(RenderSceneCB); // Calls an idle function. If this is a dedicated func, call glutPostRedisplay() at it's end
+	glutSpecialFunc(SpecialKeyboardCB);
 }
 
 static void CreateVertexBuffer()
