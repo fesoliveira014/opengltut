@@ -1,6 +1,7 @@
 ﻿#pragma comment(lib, "freeglut.lib")
 #pragma comment(lib, "glew32.lib")
 
+
 #include <cstdio>
 #include <cstring>
 #include <cassert>
@@ -19,13 +20,15 @@ GLuint VBO; // Vertex buffer object
 GLuint IBO; // Index buffer object
 GLuint gWVPLocation;
 
-Camera GameCamera;
+Camera* pGameCamera;
 
 const char* pVSFileName = "shader.vs";
 const char* pFSFileName = "shader.fs";
 
 static void RenderSceneCB()
 {
+	pGameCamera->onRender();
+
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	static float Scale = 0.0f;
@@ -36,7 +39,7 @@ static void RenderSceneCB()
 	//p.Scale(1.1f, 1.0f, 1.1f);
 	p.Rotate(0.0f, Scale, 0.0f);
 	p.WorldPos(0.0f, 0.0f, 3.0f);
-	p.SetCamera(GameCamera.getPos(), GameCamera.getTarget(), GameCamera.getUp());
+	p.SetCamera(pGameCamera->getPos(), pGameCamera->getTarget(), pGameCamera->getUp());
 	p.SetProjection(60.0f, WINDOW_WIDHT, WINDOW_HEIGHT, 1.0f, 100.0f);
 
 	glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, (const GLfloat*)p.GetTrans());
@@ -61,7 +64,20 @@ static void RenderSceneCB()
 
 static void SpecialKeyboardCB(int Key, int x, int y)
 {
-	GameCamera.onKeyboard(Key);
+	pGameCamera->OnKeyboard(Key);
+}
+
+static void KeyboardCB(unsigned char Key, int x, int y)
+{
+	switch (Key){
+		case 'q':
+			exit(0);
+	}
+}
+
+static void PassiveMouseCB(int x, int y)
+{
+	pGameCamera->OnMouse(x, y);
 }
 
 static void InitializeGlutCallbacks()
@@ -70,6 +86,8 @@ static void InitializeGlutCallbacks()
 	glutDisplayFunc(RenderSceneCB);
 	glutIdleFunc(RenderSceneCB); // Calls an idle function. If this is a dedicated func, call glutPostRedisplay() at it's end
 	glutSpecialFunc(SpecialKeyboardCB);
+	glutPassiveMotionFunc(PassiveMouseCB);
+	glutKeyboardFunc(KeyboardCB);
 }
 
 static void CreateVertexBuffer()
@@ -187,9 +205,13 @@ int main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA); // Configures GLUT options
 	glutInitWindowSize(WINDOW_WIDHT, WINDOW_HEIGHT);
 	glutInitWindowPosition(100, 100);
-	glutCreateWindow("Tutorial");
+	//glutCreateWindow("Tutorial");
+	glutGameModeString("1600x900@32");
+	glutEnterGameMode();
 
 	InitializeGlutCallbacks();
+
+	pGameCamera = new Camera(WINDOW_WIDHT, WINDOW_HEIGHT);
 
 	// Initializes GLEW and checks for errors
 	GLenum res = glewInit();

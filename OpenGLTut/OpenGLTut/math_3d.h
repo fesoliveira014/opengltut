@@ -12,6 +12,48 @@
 #define ToRadian(x) (float)(((x) * M_PI / 180.0f))
 #define ToDegree(x) (float)(((x) * 180.0f / M_PI))
 
+struct Vector2i
+{
+	int x;
+	int y;
+};
+
+struct Vector2f 
+{
+	float x;
+	float y;
+
+	Vector2f()
+	{
+
+	}
+	
+	Vector2f(int _x, int _y, int _z)
+	{
+		x = _x;
+		y = _y;
+	}
+
+	Vector2f operator+=(const Vector2f& r)
+	{
+		x += r.x;
+		y += r.y;
+	}
+
+	Vector2f operator-=(const Vector2f& r)
+	{
+		x -= r.x;
+		y -= r.y;
+	}
+
+	Vector2f operator*=(const float& s)
+	{
+		x *= s;
+		y *= s;
+	}
+
+};
+
 struct Vector3f
 {
 	float x;
@@ -61,9 +103,11 @@ struct Vector3f
 
 	Vector3f& Normalize();
 
+	void Rotate(float Angle, const Vector3f& Axis);
+
 	void print() const
 	{
-		printf("(%0.02f, %0.02f, %0.02f)", x, y, z);
+		printf("(%0.02f, %0.02f, %0.02f)\n", x, y, z);
 	}
 
 };
@@ -144,6 +188,18 @@ public:
 	void InitPersProjTransform(float FOV, float width, float height, float zNear, float zFar);
 };
 
+struct Quaternion
+{
+	float x, y, z, w;
 
+	Quaternion(float _x, float _y, float _z, float _w);
+
+	void Normalize();
+
+	Quaternion Conjugate();
+};
+
+Quaternion operator*(const Quaternion& l, const Quaternion& r);
+Quaternion operator*(const Quaternion& l, const Vector3f& v);
 
 #endif /* MATH_3D_H */

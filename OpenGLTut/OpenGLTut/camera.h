@@ -7,11 +7,15 @@ class Camera
 {
 public:
 
-	Camera();
+	Camera(int WindowWidth, int WindowHeight);
 
-	Camera(const Vector3f& pos, const Vector3f& target, const Vector3f& up);
+	Camera(int WindowWidth, int WindowHeight, const Vector3f& pos, const Vector3f& target, const Vector3f& up);
 
-	bool onKeyboard(int key);
+	bool OnKeyboard(int key);
+
+	void OnMouse(int x, int y);
+
+	void onRender();
 
 	const Vector3f& getPos() const
 	{
@@ -29,10 +33,25 @@ public:
 	}
 
 private:
+	void Init();
+	void Update();
 
 	Vector3f m_pos;
 	Vector3f m_target;
 	Vector3f m_up;
+
+	int m_windowWidth;
+	int m_windowHeight;
+
+	float m_AngleH;
+	float m_AngleV;
+
+	bool m_onUpperEdge;
+	bool m_onLowerEdge;
+	bool m_onLeftEdge;
+	bool m_onRightEdge;
+
+	Vector2i m_mousePos;
 };
 
 #endif /* CAMERA_H */
