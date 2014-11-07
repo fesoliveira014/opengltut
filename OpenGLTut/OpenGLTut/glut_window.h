@@ -1,11 +1,14 @@
+#pragma comment(lib, "freeglut.lib")
+#pragma comment(lib, "glew32.lib")
+
 #ifndef _GLUT_WINDOW_
 #define _GLUT_WINDOW_
 
-#include <GL/glew.h>
+#include "3rd party/glew-1.11.0/include/GL/glew.h"
 #ifdef _WIN32
-#include <GL/wglew.h>
+#include "3rd party/glew-1.11.0/include/GL/wglew.h"
 #else
-#include <GL/glxew.h>
+#include "3rd party\glew-1.11.0\include\GL\glxew.h"
 #endif
 
 #include <string>
@@ -49,7 +52,7 @@ public:
 		return 0.001f * glutGet(GLUT_ELAPSED_TIME);
 	}
 
-	float setTime()
+	void setTime()
 	{
 		time = 0.001f * glutGet(GLUT_ELAPSED_TIME);
 	}

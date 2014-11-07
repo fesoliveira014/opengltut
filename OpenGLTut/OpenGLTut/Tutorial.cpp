@@ -6,13 +6,20 @@
 #include <cstring>
 #include <cassert>
 #include <cmath>
-#include <gl/glew.h>
+
+#include "3rd party/glew-1.11.0/include/GL/glew.h"
+#ifdef _WIN32
+#include "3rd party/glew-1.11.0/include/GL/wglew.h"
+#else
+#include "3rd party\glew-1.11.0\include\GL\glxew.h"
+#endif
+
 #include <GL/freeglut.h>
 
 #include "ogldev_util.h"
 #include "pipeline.h"
-#include "camera.h"
 #include "ogldev_texture.h"
+#include "window.h"
 
 #define WINDOW_WIDHT 1024
 #define WINDOW_HEIGHT 768
@@ -36,16 +43,18 @@ GLuint VBO; // Vertex buffer object
 GLuint IBO; // Index buffer object
 GLuint gWVPLocation;
 GLuint gSampler;
+Window* win;
 
 Texture* pTexture = NULL;
-Camera* pGameCamera;
 
 const char* pVSFileName = "shader.vs";
 const char* pFSFileName = "shader.fs";
 
 static void RenderSceneCB()
 {
-	pGameCamera->onRender();
+	printf("im here!\n");
+
+	win->pGameCamera->onRender();
 
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -56,63 +65,36 @@ static void RenderSceneCB()
 	Pipeline p;
 	p.Rotate(0.0f, Scale, 0.0f);
 	p.WorldPos(0.0f, 0.0f, 3.0f);
-	p.SetCamera(pGameCamera->getPos(), pGameCamera->getTarget(), pGameCamera->getUp());
+	p.SetCamera(win->pGameCamera->getPos(), win->pGameCamera->getTarget(), win->pGameCamera->getUp());
 	p.SetProjection(60.0f, WINDOW_WIDHT, WINDOW_HEIGHT, 1.0f, 100.0f);
 
 	glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, (const GLfloat*)p.GetTrans());
 
 	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid*)12);
-	
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO); // Binds the Index Buffer
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0); // 0 - Index of first vertex
+	// 3 - Number of vertices
+	// GL_FLOAT - Type of the vertices
+	// GL_FALSE - Indecates that there will be no normalization
+	// 0 - Stride; number between two instances of that attrib in buffer
+	// 0 - Offset
 
-	pTexture->Bind(GL_TEXTURE0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO); // Binds the Index Buffer
 
 	glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0); // Draw vertices using predifined indexes.
 
 	glDisableVertexAttribArray(0); // Disables vertex attribute array after use
-	glDisableVertexAttribArray(1);
 
 	glutSwapBuffers();
 }
 
-static void SpecialKeyboardCB(int Key, int x, int y)
-{
-	pGameCamera->OnKeyboard(Key);
-}
-
-static void KeyboardCB(unsigned char Key, int x, int y)
-{
-	switch (Key){
-		case 'q':
-			exit(0);
-	}
-}
-
-static void PassiveMouseCB(int x, int y)
-{
-	pGameCamera->OnMouse(x, y);
-}
-
-static void InitializeGlutCallbacks()
-{
-	// Calls RenderSceneCB as the display function
-	glutDisplayFunc(RenderSceneCB);
-	glutIdleFunc(RenderSceneCB); // Calls an idle function. If this is a dedicated func, call glutPostRedisplay() at it's end
-	glutSpecialFunc(SpecialKeyboardCB);
-	glutPassiveMotionFunc(PassiveMouseCB);
-	glutKeyboardFunc(KeyboardCB);
-}
-
 static void CreateVertexBuffer()
 {
-	Vertex Vertices[4] = { Vertex(Vector3f(-1.0f, -1.0f, 0.5773f),  Vector2f(0.0f, 0.0f)),
-						   Vertex(Vector3f(0.0f, -1.0f, -1.15475f), Vector2f(0.5f, 0.0f)),
-						   Vertex(Vector3f(1.0f, -1.0f, 0.5773f),   Vector2f(1.0f, 0.0f)),
-						   Vertex(Vector3f(0.0f, 1.0f, 0.0f),       Vector2f(0.5f, 1.0f)) };
+	Vector3f Vertices[4];
+	Vertices[0] = Vector3f(-1.0f, -1.0f, 0.5773f);
+	Vertices[1] = Vector3f(0.0f, -1.0f, -1.15475f);
+	Vertices[2] = Vector3f(1.0f, -1.0f, 0.5773f);
+	Vertices[3] = Vector3f(0.0f, 1.0f, 0.0f);
 
 	glGenBuffers(1, &VBO); // Generates a single buffer, allocated in the driver and stored in the VBO
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -121,15 +103,16 @@ static void CreateVertexBuffer()
 
 static void CreateIndexBuffer()
 {
-	unsigned int Indices[] = {  0, 3, 1,
-								1, 3, 2,
-								2, 3, 0,
-								0, 1, 2 };
+	unsigned int Indices[] = { 0, 3, 1,
+		1, 3, 2,
+		2, 3, 0,
+		0, 1, 2 };
 
 	glGenBuffers(1, &IBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
 }
+
 
 static void AddShader(GLuint ShaderProgram, const char* pShaderText, GLenum ShaderType)
 {
@@ -217,35 +200,19 @@ static void CompileShaders()
 
 int main(int argc, char** argv)
 {
-	glutInit(&argc, argv); // Initializes GLUT
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA); // Configures GLUT options
-	glutInitWindowSize(WINDOW_WIDHT, WINDOW_HEIGHT);
-	glutInitWindowPosition(100, 100);
-	//glutCreateWindow("Tutorial");
-	glutGameModeString("1600x900@32");
-	glutEnterGameMode();
+	GlutWindow::init(argc, argv);
 
-	InitializeGlutCallbacks();
-
-	pGameCamera = new Camera(WINDOW_WIDHT, WINDOW_HEIGHT);
-
-	// Initializes GLEW and checks for errors
-	GLenum res = glewInit();
-	if (res != GLEW_OK) {
-		fprintf(stderr, "Error: '%s'\n", glewGetErrorString(res));
-		return 1;
-	}
-
-	printf("GL version: %s\n", glGetString(GL_VERSION));
-
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	win = new Window(200, 200, WINDOW_WIDHT, WINDOW_HEIGHT, "OpenGL Tutorial");
+	win->getRedisplayCB(RenderSceneCB);
+	win->getIdleCB(RenderSceneCB);
+	win->pGameCamera = new Camera(WINDOW_WIDHT, WINDOW_HEIGHT);
 
 	CreateVertexBuffer();
 	CreateIndexBuffer();
 
 	CompileShaders();
 
-	glutMainLoop();
+	GlutWindow::run();
 
 	return 0;
 }

@@ -1,22 +1,162 @@
-﻿Build started 04-Nov-14 8:26:12 PM.
-     1>Project "C:\Users\Felipe Santos\Documents\GitHub\opengltut\OpenGLTut\OpenGLTut\OpenGLTut.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 06-Nov-14 9:55:44 PM.
+     1>Project "C:\Users\Felipe Santos\Documents\GitHub\opengltut\OpenGLTut\OpenGLTut\OpenGLTut.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Felipe Santos\Documents\GitHub\opengltut\OpenGLTut\OpenGLTut\ImageMagick" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt camera.cpp math_3d.cpp ogldev_util.cpp pipeline.cpp Tutorial.cpp
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Felipe Santos\Documents\GitHub\opengltut\OpenGLTut\OpenGLTut\ImageMagick" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Tutorial.cpp glut_window.cpp
+         glut_window.cpp
          Tutorial.cpp
-         pipeline.cpp
-         ogldev_util.cpp
-         math_3d.cpp
-         camera.cpp
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\channelmoments.h(64): warning C4251: 'Magick::ChannelMoments::_huInvariants' : class 'std::vector<double,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::ChannelMoments'
+                 with
+                 [
+                     _Ty=double
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\channelmoments.h(97): warning C4251: 'Magick::ImageMoments::_channels' : class 'std::vector<Magick::ChannelMoments,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::ImageMoments'
+                 with
+                 [
+                     _Ty=Magick::ChannelMoments
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(456): warning C4251: 'Magick::DrawableBezier::_coordinates' : class 'std::list<Magick::Coordinate,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::DrawableBezier'
+                 with
+                 [
+                     _Ty=Magick::Coordinate
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(498): warning C4251: 'Magick::DrawablePushClipPath::_id' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::DrawablePushClipPath'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(526): warning C4251: 'Magick::DrawableClipPath::_id' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::DrawableClipPath'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(959): warning C4251: 'Magick::DrawableFont::_font' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::DrawableFont'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(960): warning C4251: 'Magick::DrawableFont::_family' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::DrawableFont'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(1128): warning C4251: 'Magick::DrawablePath::_path' : class 'std::list<Magick::VPath,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::DrawablePath'
+                 with
+                 [
+                     _Ty=Magick::VPath
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(1217): warning C4251: 'Magick::DrawablePolygon::_coordinates' : class 'std::list<Magick::Coordinate,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::DrawablePolygon'
+                 with
+                 [
+                     _Ty=Magick::Coordinate
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(1237): warning C4251: 'Magick::DrawablePolyline::_coordinates' : class 'std::list<Magick::Coordinate,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::DrawablePolyline'
+                 with
+                 [
+                     _Ty=Magick::Coordinate
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(1321): warning C4251: 'Magick::DrawablePushPattern::_id' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::DrawablePushPattern'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(1927): warning C4251: 'Magick::DrawableText::_text' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::DrawableText'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(1928): warning C4251: 'Magick::DrawableText::_encoding' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::DrawableText'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(2339): warning C4251: 'Magick::PathArcAbs::_coordinates' : class 'std::list<Magick::PathArcArgs,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::PathArcAbs'
+                 with
+                 [
+                     _Ty=Magick::PathArcArgs
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(2361): warning C4251: 'Magick::PathArcRel::_coordinates' : class 'std::list<Magick::PathArcArgs,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::PathArcRel'
+                 with
+                 [
+                     _Ty=Magick::PathArcArgs
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(2512): warning C4251: 'Magick::PathCurvetoAbs::_args' : class 'std::list<Magick::PathCurvetoArgs,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::PathCurvetoAbs'
+                 with
+                 [
+                     _Ty=Magick::PathCurvetoArgs
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(2535): warning C4251: 'Magick::PathCurvetoRel::_args' : class 'std::list<Magick::PathCurvetoArgs,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::PathCurvetoRel'
+                 with
+                 [
+                     _Ty=Magick::PathCurvetoArgs
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(2559): warning C4251: 'Magick::PathSmoothCurvetoAbs::_coordinates' : class 'std::list<Magick::Coordinate,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::PathSmoothCurvetoAbs'
+                 with
+                 [
+                     _Ty=Magick::Coordinate
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(2584): warning C4251: 'Magick::PathSmoothCurvetoRel::_coordinates' : class 'std::list<Magick::Coordinate,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::PathSmoothCurvetoRel'
+                 with
+                 [
+                     _Ty=Magick::Coordinate
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(2693): warning C4251: 'Magick::PathQuadraticCurvetoAbs::_args' : class 'std::list<Magick::PathQuadraticCurvetoArgs,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::PathQuadraticCurvetoAbs'
+                 with
+                 [
+                     _Ty=Magick::PathQuadraticCurvetoArgs
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(2717): warning C4251: 'Magick::PathQuadraticCurvetoRel::_args' : class 'std::list<Magick::PathQuadraticCurvetoArgs,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::PathQuadraticCurvetoRel'
+                 with
+                 [
+                     _Ty=Magick::PathQuadraticCurvetoArgs
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(2741): warning C4251: 'Magick::PathSmoothQuadraticCurvetoAbs::_coordinates' : class 'std::list<Magick::Coordinate,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::PathSmoothQuadraticCurvetoAbs'
+                 with
+                 [
+                     _Ty=Magick::Coordinate
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(2765): warning C4251: 'Magick::PathSmoothQuadraticCurvetoRel::_coordinates' : class 'std::list<Magick::Coordinate,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::PathSmoothQuadraticCurvetoRel'
+                 with
+                 [
+                     _Ty=Magick::Coordinate
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(2793): warning C4251: 'Magick::PathLinetoAbs::_coordinates' : class 'std::list<Magick::Coordinate,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::PathLinetoAbs'
+                 with
+                 [
+                     _Ty=Magick::Coordinate
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(2817): warning C4251: 'Magick::PathLinetoRel::_coordinates' : class 'std::list<Magick::Coordinate,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::PathLinetoRel'
+                 with
+                 [
+                     _Ty=Magick::Coordinate
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(2959): warning C4251: 'Magick::PathMovetoAbs::_coordinates' : class 'std::list<Magick::Coordinate,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::PathMovetoAbs'
+                 with
+                 [
+                     _Ty=Magick::Coordinate
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\drawable.h(2983): warning C4251: 'Magick::PathMovetoRel::_coordinates' : class 'std::list<Magick::Coordinate,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::PathMovetoRel'
+                 with
+                 [
+                     _Ty=Magick::Coordinate
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\exception.h(55): warning C4251: 'Magick::Exception::_what' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::Exception'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\coderinfo.h(70): warning C4251: 'Magick::CoderInfo::_name' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::CoderInfo'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\coderinfo.h(71): warning C4251: 'Magick::CoderInfo::_description' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::CoderInfo'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\coderinfo.h(72): warning C4251: 'Magick::CoderInfo::_mimeType' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::CoderInfo'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\montage.h(103): warning C4251: 'Magick::Montage::_fileName' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::Montage'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\montage.h(105): warning C4251: 'Magick::Montage::_font' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::Montage'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\montage.h(108): warning C4251: 'Magick::Montage::_label' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::Montage'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\montage.h(112): warning C4251: 'Magick::Montage::_texture' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::Montage'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\montage.h(114): warning C4251: 'Magick::Montage::_title' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::Montage'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\stl.h(134): warning C4251: 'Magick::annotateImage::_text' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::annotateImage'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\stl.h(213): warning C4251: 'Magick::cdlImage::_cdl' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::cdlImage'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\stl.h(273): warning C4251: 'Magick::commentImage::_comment' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::commentImage'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\stl.h(385): warning C4251: 'Magick::drawImage::_drawableList' : class 'std::list<Magick::Drawable,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Magick::drawImage'
+                 with
+                 [
+                     _Ty=Magick::Drawable
+                 ]
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\stl.h(651): warning C4251: 'Magick::labelImage::_label' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::labelImage'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\stl.h(1338): warning C4251: 'Magick::backgroundTextureImage::_backgroundTexture' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::backgroundTextureImage'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\stl.h(1513): warning C4251: 'Magick::fileNameImage::_fileName' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::fileNameImage'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\stl.h(1537): warning C4251: 'Magick::fontImage::_font' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::fontImage'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\stl.h(1597): warning C4251: 'Magick::magickImage::_magick' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::magickImage'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\stl.h(1856): warning C4251: 'Magick::tileNameImage::_tileName' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::tileNameImage'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\stl.h(1893): warning C4251: 'Magick::viewImage::_view' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::viewImage'
+     1>c:\users\felipe santos\documents\github\opengltut\opengltut\opengltut\imagemagick\magick++\stl.h(1906): warning C4251: 'Magick::x11DisplayImage::_display' : class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Magick::x11DisplayImage'
          Generating Code...
        Link:
          D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Felipe Santos\Documents\GitHub\opengltut\OpenGLTut\Debug\OpenGLTut.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Felipe Santos\Documents\GitHub\opengltut\OpenGLTut\OpenGLTut\lib" opengl32.lib glu32.lib glut32.lib freeglut.lib glew32.lib glew32s.lib CORE_RL_magick_.lib CORE_RL_Magick++_.lib CORE_RL_wand_.lib X11.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Felipe Santos\Documents\GitHub\opengltut\OpenGLTut\Debug\OpenGLTut.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Felipe Santos\Documents\GitHub\opengltut\OpenGLTut\Debug\OpenGLTut.lib" /MACHINE:X86 Debug\camera.obj
+         Debug\glut_window.obj
          Debug\math_3d.obj
+         Debug\ogldev_texture.obj
          Debug\ogldev_util.obj
          Debug\pipeline.obj
          Debug\Tutorial.obj
-         OpenGLTut.vcxproj -> C:\Users\Felipe Santos\Documents\GitHub\opengltut\OpenGLTut\Debug\OpenGLTut.exe
-     1>Done Building Project "C:\Users\Felipe Santos\Documents\GitHub\opengltut\OpenGLTut\OpenGLTut\OpenGLTut.vcxproj" (Rebuild target(s)).
+     1>glut_window.obj : error LNK2019: unresolved external symbol __imp__glutLeaveMainLoop@0 referenced in function "public: __thiscall GlutWindow::~GlutWindow(void)" (??1GlutWindow@@QAE@XZ)
+     1>glut_window.obj : error LNK2019: unresolved external symbol __imp__glutInitContextVersion@8 referenced in function "public: static void __cdecl GlutWindow::init(int &,char * *,int,int,int,bool)" (?init@GlutWindow@@SAXAAHPAPADHHH_N@Z)
+     1>glut_window.obj : error LNK2019: unresolved external symbol __imp__glutInitContextFlags@4 referenced in function "public: static void __cdecl GlutWindow::init(int &,char * *,int,int,int,bool)" (?init@GlutWindow@@SAXAAHPAPADHHH_N@Z)
+     1>ogldev_texture.obj : error LNK2019: unresolved external symbol "public: __thiscall Magick::Blob::Blob(void)" (??0Blob@Magick@@QAE@XZ) referenced in function "public: __thiscall Texture::Texture(unsigned int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (??0Texture@@QAE@IABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+     1>ogldev_texture.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall Magick::Blob::~Blob(void)" (??1Blob@Magick@@UAE@XZ) referenced in function __unwindfunclet$??0Texture@@QAE@IABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$1
+     1>ogldev_texture.obj : error LNK2019: unresolved external symbol "public: void const * __thiscall Magick::Blob::data(void)const " (?data@Blob@Magick@@QBEPBXXZ) referenced in function __catch$?Load@Texture@@QAE_NXZ$0
+     1>ogldev_texture.obj : error LNK2019: unresolved external symbol "public: __thiscall Magick::Image::Image(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (??0Image@Magick@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function "public: bool __thiscall Texture::Load(void)" (?Load@Texture@@QAE_NXZ)
+     1>ogldev_texture.obj : error LNK2019: unresolved external symbol "public: void __thiscall Magick::Image::write(class Magick::Blob *,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?write@Image@Magick@@QAEXPAVBlob@2@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function "public: bool __thiscall Texture::Load(void)" (?Load@Texture@@QAE_NXZ)
+     1>ogldev_texture.obj : error LNK2019: unresolved external symbol "public: struct MagickCore::_Image const * __thiscall Magick::Image::constImage(void)const " (?constImage@Image@Magick@@QBEPBU_Image@MagickCore@@XZ) referenced in function "public: unsigned int __thiscall Magick::Image::columns(void)const " (?columns@Image@Magick@@QBEIXZ)
+     1>C:\Users\Felipe Santos\Documents\GitHub\opengltut\OpenGLTut\Debug\OpenGLTut.exe : fatal error LNK1120: 9 unresolved externals
+     1>Done Building Project "C:\Users\Felipe Santos\Documents\GitHub\opengltut\OpenGLTut\OpenGLTut\OpenGLTut.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:05.67
+Time Elapsed 00:00:07.35

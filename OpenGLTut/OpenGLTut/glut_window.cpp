@@ -1,12 +1,15 @@
+#pragma comment(lib, "freeglut.lib")
+#pragma comment(lib, "glew32.lib")
+
 #include <map>
-#include <GL/glew.h>
 #include <cstdio>
 
+#include "3rd party/glew-1.11.0/include/GL/glew.h"
 #ifdef _WIN32
-#include <GL/wglew.h>
+#include "3rd party/glew-1.11.0/include/GL/wglew.h"
 #else
-#include <GL/glxew.h
-#endif // !_WIN32
+#include "3rd party\glew-1.11.0\include\GL\glxew.h"
+#endif
 
 #include "glut_window.h"
 
@@ -28,7 +31,7 @@ static void redisplayFunc()
 	window->redisplay();
 	window->setTime();
 
-	glutSwapBuffers();
+	//glutSwapBuffers();
 }
 
 static void reshapeFunc(int w, int h)
@@ -143,7 +146,7 @@ GlutWindow::GlutWindow(int x0, int y0, int w, int h, const char* windowCaption) 
 		exit(1);
 	}
 
-	glClearColor(0.5, 0.5, 0.5, 1.0);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 }

@@ -192,29 +192,17 @@ void Camera::Update()
 	Vector3f View(1.0f, 0.0f, 0.0f);
 	View.Rotate(m_AngleH, Vaxis);
 	View.Normalize();
-	printf("View after rotating on Haxis\n");
-	View.print();
 
 	// Rotates the view vector by the horizontal angle around the horizontal axis
 	Vector3f Haxis = Vaxis.Cross(View);
 	Haxis.Normalize();
 	View.Rotate(m_AngleV, Haxis);
 	View.Normalize();
-	printf("View after rotating on Vaxis\n");
-	View.print();
 
 	m_target = View;
 	m_target.Normalize();
-	printf("target:\n");
-	m_target.print();
 
 	m_up = m_target.Cross(Haxis);
 	m_up.Normalize();
-	printf("up:\n");
-	m_up.print();
 
-	printf("pos:\n");
-	m_pos.print();
-
-	printf("AngleH = %.02f; AngleV = %.02f", m_AngleH, m_AngleV);
 }
