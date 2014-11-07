@@ -28,7 +28,7 @@ struct Vector2f
 
 	}
 	
-	Vector2f(int _x, int _y, int _z)
+	Vector2f(float _x, float _y)
 	{
 		x = _x;
 		y = _y;

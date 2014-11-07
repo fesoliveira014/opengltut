@@ -47,10 +47,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\Felipe Santos\Documents\GitHub\opengltut\OpenGLTut\OpenGLTut\ImageMagick;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;glut32.lib;freeglut.lib;glew32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;glut32.lib;freeglut.lib;glew32.lib;glew32s.lib;CORE_RL_magick_.lib;CORE_RL_Magick++_.lib;CORE_RL_wand_.lib;X11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Felipe Santos\Documents\GitHub\opengltut\OpenGLTut\OpenGLTut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -70,16 +72,21 @@
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="math_3d.cpp" />
+    <ClCompile Include="ogldev_texture.cpp" />
     <ClCompile Include="ogldev_util.cpp" />
     <ClCompile Include="pipeline.cpp" />
     <ClCompile Include="Tutorial.cpp" />
+    <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="glut_window.h" />
     <ClInclude Include="math_3d.h" />
+    <ClInclude Include="ogldev_texture.h" />
     <ClInclude Include="ogldev_types.h" />
     <ClInclude Include="ogldev_util.h" />
     <ClInclude Include="pipeline.h" />
+    <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader.fs" />

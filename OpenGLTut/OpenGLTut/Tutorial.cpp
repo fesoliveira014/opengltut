@@ -12,14 +12,32 @@
 #include "ogldev_util.h"
 #include "pipeline.h"
 #include "camera.h"
+#include "ogldev_texture.h"
 
 #define WINDOW_WIDHT 1024
 #define WINDOW_HEIGHT 768
 
+struct Vertex
+{
+	Vector3f m_pos;
+	Vector2f m_tex;
+
+	Vertex();
+
+	Vertex(Vector3f pos, Vector2f tex)
+	{
+		m_pos = pos;
+		m_tex = tex;
+	}
+
+};
+
 GLuint VBO; // Vertex buffer object
 GLuint IBO; // Index buffer object
 GLuint gWVPLocation;
+GLuint gSampler;
 
+Texture* pTexture = NULL;
 Camera* pGameCamera;
 
 const char* pVSFileName = "shader.vs";
@@ -36,7 +54,6 @@ static void RenderSceneCB()
 	Scale += 0.1f;
 
 	Pipeline p;
-	//p.Scale(1.1f, 1.0f, 1.1f);
 	p.Rotate(0.0f, Scale, 0.0f);
 	p.WorldPos(0.0f, 0.0f, 3.0f);
 	p.SetCamera(pGameCamera->getPos(), pGameCamera->getTarget(), pGameCamera->getUp());
@@ -45,19 +62,19 @@ static void RenderSceneCB()
 	glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, (const GLfloat*)p.GetTrans());
 
 	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0); // 0 - Index of first vertex
-														   // 3 - Number of vertices
-														   // GL_FLOAT - Type of the vertices
-														   // GL_FALSE - Indecates that there will be no normalization
-														   // 0 - Stride; number between two instances of that attrib in buffer
-														   // 0 - Offset
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid*)12);
 	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO); // Binds the Index Buffer
+
+	pTexture->Bind(GL_TEXTURE0);
 
 	glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0); // Draw vertices using predifined indexes.
 
 	glDisableVertexAttribArray(0); // Disables vertex attribute array after use
+	glDisableVertexAttribArray(1);
 
 	glutSwapBuffers();
 }
@@ -92,11 +109,10 @@ static void InitializeGlutCallbacks()
 
 static void CreateVertexBuffer()
 {
-	Vector3f Vertices[4];
-	Vertices[0] = Vector3f(-1.0f, -1.0f, 0.5773f);
-	Vertices[1] = Vector3f(0.0f, -1.0f, -1.15475f);
-	Vertices[2] = Vector3f(1.0f, -1.0f, 0.5773f);
-	Vertices[3] = Vector3f(0.0f, 1.0f, 0.0f);
+	Vertex Vertices[4] = { Vertex(Vector3f(-1.0f, -1.0f, 0.5773f),  Vector2f(0.0f, 0.0f)),
+						   Vertex(Vector3f(0.0f, -1.0f, -1.15475f), Vector2f(0.5f, 0.0f)),
+						   Vertex(Vector3f(1.0f, -1.0f, 0.5773f),   Vector2f(1.0f, 0.0f)),
+						   Vertex(Vector3f(0.0f, 1.0f, 0.0f),       Vector2f(0.5f, 1.0f)) };
 
 	glGenBuffers(1, &VBO); // Generates a single buffer, allocated in the driver and stored in the VBO
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
